@@ -1,7 +1,3 @@
-/**
- * CareerQuest - Career Data Models
- */
-
 export type IndustryType =
   | "technology"
   | "healthcare"
@@ -13,24 +9,25 @@ export type IndustryType =
 
 export type EducationLevel =
   | "high_school"
+  | "vocational"
   | "associate"
   | "bachelor"
   | "master"
   | "doctorate"
-  | "bootcamp_certification";
-
-export interface SalaryRange {
-  entry: number;
-  median: number;
-  senior: number;
-  currency: string;
-}
+  | "bootcamp";
 
 export interface SkillRequirement {
   id: string;
   name: string;
   category: "technical" | "soft" | "domain";
-  importanceScore: number; // 1 - 10
+  importanceScore: number;
+}
+
+export interface CareerSalary {
+  entry: number;
+  median: number;
+  senior: number;
+  currency: string;
 }
 
 export interface Career {
@@ -41,10 +38,10 @@ export interface Career {
   summary: string;
   industry: IndustryType;
   primaryEducation: EducationLevel;
-  salary: SalaryRange;
-  projectedGrowthPercent: number; // e.g. 15 for 15%
-  workLifeBalanceScore: number; // 1 - 10
-  stressLevelScore: number; // 1 - 10
+  salary: CareerSalary;
+  projectedGrowthPercent: number;
+  workLifeBalanceScore: number;
+  stressLevelScore: number;
   requiredSkills: SkillRequirement[];
   dailyResponsibilities: string[];
   pros: string[];
@@ -54,22 +51,146 @@ export interface Career {
   featured?: boolean;
 }
 
-export interface CareerFilterCriteria {
-  searchQuery?: string;
-  industries?: IndustryType[];
-  educationLevels?: EducationLevel[];
-  minSalary?: number;
-  maxStressScore?: number;
-  minWorkLifeBalanceScore?: number;
+export interface AtAGlanceSchema {
+  median_pay: string;
+  projected_growth: string;
+  work_life_context: string;
+  stress_context: string;
 }
 
-export interface CareerMatchResult {
-  careerId: string;
-  careerTitle: string;
-  overallMatchPercentage: number;
-  academicFitPercentage: number;
-  interestFitPercentage: number;
-  financialFeasibilityPercentage: number;
-  keyStrengths: string[];
-  potentialGaps: string[];
+export interface CareerListItem {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  tagline: string;
+  at_a_glance: AtAGlanceSchema;
+  key_skills: string[];
+}
+
+export interface CareerListPaginationResponse {
+  items: CareerListItem[];
+  total: number;
+  page: number;
+  limit: number;
+  total_pages: number;
+}
+
+export interface SkillItemSchema {
+  skill_name: string;
+  skill_type: "technical" | "professional";
+  importance_score: number;
+}
+
+export interface SkillsGroupSchema {
+  technical: SkillItemSchema[];
+  professional: SkillItemSchema[];
+}
+
+export interface EducationPhaseItemSchema {
+  title: string;
+  description: string;
+  duration?: string | null;
+  estimated_cost?: string | null;
+}
+
+export interface EducationGroupSchema {
+  after_class_10: EducationPhaseItemSchema[];
+  after_class_12: EducationPhaseItemSchema[];
+  entrance_requirements: EducationPhaseItemSchema[];
+  certifications: EducationPhaseItemSchema[];
+}
+
+export interface ProgressionStepSchema {
+  level_title: string;
+  experience_range: string;
+  typical_role: string;
+  salary_range: string;
+}
+
+export interface SpecializationSchema {
+  title: string;
+  description: string;
+  market_demand: string;
+}
+
+export interface FinancialItemSchema {
+  title: string;
+  amount_or_range: string;
+  notes?: string | null;
+}
+
+export interface FinancialGroupSchema {
+  education_cost: FinancialItemSchema[];
+  additional_costs: FinancialItemSchema[];
+  funding_options: FinancialItemSchema[];
+}
+
+export interface PracticalConsiderationsSchema {
+  positive_aspects: string[];
+  challenges: string[];
+}
+
+export interface OpportunityItemSchema {
+  name: string;
+  description: string;
+}
+
+export interface OpportunitiesGroupSchema {
+  industries: OpportunityItemSchema[];
+  work_models: OpportunityItemSchema[];
+  geographic_options: OpportunityItemSchema[];
+}
+
+export interface CareerDetailResponse {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  tagline: string;
+  overview: string;
+  at_a_glance: AtAGlanceSchema;
+  responsibilities: string[];
+  skills: SkillsGroupSchema;
+  education: EducationGroupSchema;
+  progression: ProgressionStepSchema[];
+  specializations: SpecializationSchema[];
+  financials: FinancialGroupSchema;
+  practical_considerations: PracticalConsiderationsSchema;
+  opportunities: OpportunitiesGroupSchema;
+}
+
+export interface ApiPathwayNodeData {
+  title: string;
+  subtitle?: string;
+  durationMonths?: number;
+  estimatedCost?: number;
+  nodeType: string;
+}
+
+export interface PathwayNodeSchema {
+  id: string;
+  position: { x: number; y: number };
+  data: ApiPathwayNodeData;
+}
+
+export interface PathwayEdgeSchema {
+  id: string;
+  source: string;
+  target: string;
+  label?: string;
+  animated?: boolean;
+}
+
+export interface CareerPathwayResponse {
+  career_id: string;
+  career_slug: string;
+  title: string;
+  description: string;
+  total_duration_years: number;
+  total_estimated_cost: string;
+  expected_breakeven_years: number;
+  difficulty_score: number;
+  nodes: PathwayNodeSchema[];
+  edges: PathwayEdgeSchema[];
 }

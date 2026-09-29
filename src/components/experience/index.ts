@@ -1,9 +1,13 @@
 /**
- * CareerQuest - Experience Lab Component Primitives
- * Placeholder barrel for simulation catalogs and experience cards
+ * CareerQuest - Experience Lab Components Barrel
  */
 
-export interface ExperienceCatalogItemProps {
-  simulationId: string;
-  difficulty: "beginner" | "intermediate" | "advanced";
-}
+export * from "./career-switcher";
+export * from "./workspace-header";
+export * from "./case-dossier-card";
+export * from "./decision-arena";
+export * from "./consequence-panel";
+export * from "./evidence-inspector";
+export * from "./observed-tendencies-section";
+export * from "./next-steps-section";
+export * from "./experience-workspace";
