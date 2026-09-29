@@ -41,3 +41,16 @@ export interface UserProfile {
   completedSimulationIds: string[];
   activePathwayId?: string;
 }
+
+/** Input captured during the optional, non-deterministic discovery setup. */
+export interface OnboardingProfile {
+  fullName: string;
+  educationStage: "class_10" | "class_11" | "class_12" | "undergraduate" | "guardian";
+  academicStream: "science" | "commerce" | "humanities" | "undecided";
+  region: string;
+  studyScope: "domestic_global" | "domestic" | "global";
+  parentAccess: boolean;
+  interests: string[];
+  priorities: string[];
+  yearlyBudget: "under_2l" | "2l_6l" | "over_6l" | "unconstrained";
+}

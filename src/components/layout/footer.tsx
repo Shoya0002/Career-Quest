@@ -28,7 +28,7 @@ export function Footer() {
             Pathway Explorer
           </Link>
           <Link
-            href="#parent-partnership"
+            href="/#parent-partnership"
             className="hover:text-primary transition-colors duration-150"
           >
             Parent Guidance

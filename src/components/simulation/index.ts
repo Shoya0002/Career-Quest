@@ -7,3 +7,6 @@ export interface SimulationRunnerProps {
   scenarioId: string;
   onComplete?: () => void;
 }
+export * from "./experience-lab";
+export * from "./simulation-player";
+export * from "./experience-report";

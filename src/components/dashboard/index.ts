@@ -1,10 +1,5 @@
-/**
- * CareerQuest - Dashboard Component Primitives
- * Placeholder barrel for dashboard widgets and metric cards
- */
-
-export interface DashboardMetricProps {
-  title: string;
-  value: string | number;
-  changeDescription?: string;
-}
+export * from "./dashboard-header";
+export * from "./continue-experience-card";
+export * from "./journey-progress";
+export * from "./careers-worth-exploring";
+export * from "./pathway-preview";

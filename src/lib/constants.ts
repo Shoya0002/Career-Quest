@@ -31,9 +31,13 @@ export const COLOR_TOKENS = {
  */
 export const ROUTES = {
   HOME: "/",
+  ONBOARDING: "/onboarding",
   DASHBOARD: "/dashboard",
   EXPLORE: "/explore",
+  CAREER: "/career",
   EXPERIENCE: "/experience",
+  SIMULATION: "/simulation",
+  RESULTS: "/results",
   WHAT_IF: "/what-if",
   JOURNEY: "/journey",
 } as const;

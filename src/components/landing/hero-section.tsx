@@ -31,7 +31,7 @@ export function HeroSection() {
         {/* CTA Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href={ROUTES.EXPLORE}
+            href={ROUTES.ONBOARDING}
             className={buttonVariants({
               size: "lg",
               className:
